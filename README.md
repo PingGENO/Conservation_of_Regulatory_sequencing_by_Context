@@ -1,4 +1,4 @@
-# Conservation of Regulatory DNA sequencing x Context
+# Conservation of Regulatory DNA Sequence x Context
 
 ## Overview
 Cis-regulatory DNA elements have significantly higher conservation than randomly selected DNA sequences, and distal cis-regulatory regions such as enhancers are less conserved and evolve rapidly relative to promoters. This demo shows the stimulation-specific open chromatin regions determined by ATAC-seq for human immune cells are more likely to be distal enhancers and have faster functional evolution (lower averaged phyloP scores) than non-differential ATACs.
