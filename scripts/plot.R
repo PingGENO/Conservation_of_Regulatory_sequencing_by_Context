@@ -29,7 +29,7 @@ results %>%
   ggplot(., aes(x=(as.numeric(position)-100)*10, y=Mean, group = diff.ATAC, fill=diff.ATAC)) +
   geom_ribbon(aes(y = Mean, ymin = Mean - se, ymax = Mean + se, fill=diff.ATAC), alpha = 0.5) +
   geom_line() +  ylab("Average phyloP score") + xlab("Distance from ATAC center") + 
-  theme_classic() + scale_fill_manual(values = c("blue","red")) + ggtitle("Monocytes open chromatin")
+  theme_classic() + scale_fill_manual(values = c("blue","red")) + ggtitle("open chromatin")
 
 #sessionInfo()
 
