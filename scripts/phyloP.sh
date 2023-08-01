@@ -21,6 +21,8 @@ cat ./data/monocyte.ATACs.bed | awk 'OFS="\t" {print $1, int(($2+$3)/2)-1000, in
 
 
 ## 3.calculate phyloP scores
+chmod +x ./scripts/bigWigAverageOverBed 
+#
 ./scripts/bigWigAverageOverBed \
 ${hg38.phyloP100way.bw} \
 ./data/monocyte.ATACs_midpoint.1kb_per10Base.bed \
