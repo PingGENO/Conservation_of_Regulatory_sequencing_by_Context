@@ -1,32 +1,33 @@
 # Conservation of Regulatory DNA sequencing x Context
 
-## Introduction
+## Overview
 Cis-regulatory DNA elements have significantly higher conservation than randomly selected DNA sequences, and distal cis-regulatory regions such as enhancers are less conserved and evolve rapidly relative to promoters. This demo shows the stimulation-specific open chromatin regions determined by ATAC-seq for human immune cells are more likely to be distal enhancers and have faster functional evolution (lower averaged phyloP scores) than non-differential ATACs.
 
-## Source of data:
+## Source of data
 - ATAC-seq data from human primary [monocytes](https://zenodo.org/record/8158923) treated with lipopolysaccharide or interferon-γ.
 - ATAC-seq data from monocyte derived [macrophages](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE172116) treated with lipopolysaccharide for acute response and tolerance.
-- The phyloP score, the -log(p value) under a null hypothesis of neutral evolution, derived from the alignment of 100 vertebrate genomes per base from the [UCSC browser](http://hgdownload.cse.ucsc.edu/goldenpath/hg38/phyloP100way/). 
+- phyloP score, the -log(p value) under a null hypothesis of neutral evolution, derived from the alignment of 100 vertebrate genomes per base from the [UCSC Genome Browser](http://hgdownload.cse.ucsc.edu/goldenpath/hg38/phyloP100way/). 
 
 
-## Script
+## Usage
+#### Requirements
+* Linux
+* R>=3.6
+
+#### Example
+
+To calculate the conservation scores for each ATAC peak, the midpoint of each recurrent ATAC peak was first flanked by a ±1Kb window, which was then devided into 10bp bins. The averaged phyloP conservation scores for each region were calculated in 10-bp bins using [bigWigAverageOverBed](http://hgdownload.soe.ucsc.edu/admin/exe/)(version2).
 
 ```
-awk 'OFS="\t" {print $1":"$2"-"$3, $1, $4, $5, "."}' test.data/distal.ATAC.regions.Chr7.txt > peak.saf
-
-/apps/htseq/subread-1.6.4-Linux-x86_64/bin/featureCounts -T 12 \
--p \
--F SAF \
--a peak.saf \
--o eRNA_featureCounts.txt \
-Mapping/mapped.hisat2/*_chr.uniq.mapped.bam
+bash ./scripts/phyloP.sh
+Rscript ./scripts/plot.R ./output/monocyte_phyloP.tab ./data/diff.ATACs_mono.bed
 
 ```
 
 ## Output & visualisation
-<img src="man/figures/logo30.png" align="right" />
+![Screenshot](output/Rplot.png)
 
+Average PhyloP conservation scores of the ±1Kb genomic regions centered on differential ATAC peaks (red) and non-differential peaks (blue).
 
-
-Average PhyloP conservation scores of the ±1Kb genomic regions centered on differential ATAC peaks (orange) and non-differential peaks (grey). The PhyloP scores for each region were calculated in 10-bp bins using bigWigAverageOverBed (see Methods).  
-
+## Contact
+email to pzhang@well.ox.ac.uk with any questions about this repository.
