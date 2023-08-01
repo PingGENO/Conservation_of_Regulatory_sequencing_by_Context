@@ -21,11 +21,12 @@ To calculate the conservation scores for each ATAC peak, the midpoint of each re
 ```
 bash ./scripts/phyloP.sh
 Rscript ./scripts/plot.R ./output/monocyte_phyloP.tab ./data/diff.ATACs_mono.bed
-
+Rscript ./scripts/plot.R ./output/MDMs_phyloP.tab ./data/diff.ATACs_MDMs.bed
 ```
 
 ## Output & visualisation
 ![Screenshot](output/Rplot.png)
+![Screenshot](output/Rplot01.png)
 
 Average PhyloP conservation scores of the ±1Kb genomic regions centered on differential ATAC peaks (red) and non-differential peaks (blue).
 
